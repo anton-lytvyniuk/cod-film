@@ -11,7 +11,7 @@ class FilmEdit extends Component {
     }
 
     onChangeInfoGenerator = key => ({ target: { value } }) => 
-        this.setState({ info: { ...this.state.info, [key]: value } })
+        this.setState({ info: { ...this.state.info, [key]: key === 'year' ? parseInt(value, 10) : value } })
 
     onChangeDescription = ({ target: { value } }) => this.setState({ description: value })
     

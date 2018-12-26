@@ -8,7 +8,7 @@ class FilmsList extends Component {
     render() {
         const { films, dictionary, editActionCreator } = this.props; 
         const filmsList = Object.keys(films).map(key =>
-            <Panel>
+            <Panel key={key} >
                 <Panel.Heading>
                     <Panel.Title componentClass='h2' className='text-primary'>
                         {films[key].info.title}/{films[key].info.originTitle}
@@ -16,7 +16,6 @@ class FilmsList extends Component {
                 </Panel.Heading>
                 <Panel.Body>
                     <FilmDecription 
-                        key={key} 
                         film={films[key]} 
                         dictionary={dictionary}
                     />
@@ -36,7 +35,7 @@ class FilmsList extends Component {
 FilmsList.propTypes = {
   dictionary: PropTypes.objectOf(PropTypes.string),
   editActionCreator: PropTypes.func,
-  films: PropTypes.arrayOf(PropTypes.shape({
+  films: PropTypes.objectOf(PropTypes.shape({
     img: PropTypes.string,
     description: PropTypes.string,
     info: PropTypes.shape({
