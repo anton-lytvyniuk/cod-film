@@ -11,7 +11,7 @@ class FilmsList extends Component {
             <Panel key={key} >
                 <Panel.Heading>
                     <Panel.Title componentClass='h2' className='text-primary'>
-                        {films[key].info.title}/{films[key].info.originTitle}
+                      {films[key].info.originTitle ? `${films[key].info.title}/${films[key].info.originTitle}` : films[key].info.title}
                     </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body>

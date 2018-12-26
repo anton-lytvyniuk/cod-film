@@ -34,7 +34,7 @@ class FilmEdit extends Component {
             <Panel>
                 <Panel.Heading>
                     <Panel.Title componentClass='h2' className='text-primary'>
-                        {info.title}/{info.originTitle}
+                      {info.originTitle ? `${info.title}/${info.originTitle}` : info.title}
                     </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body>
