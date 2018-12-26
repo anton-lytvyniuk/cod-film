@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { Row, Col } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 class FilmDescription extends Component {
     render() {
@@ -34,6 +35,23 @@ class FilmDescription extends Component {
             </div>
         );
     }
+}
+
+FilmDescription.propTypes = {
+  dictionary: PropTypes.objectOf(PropTypes.string),
+  film: PropTypes.shape({
+    img: PropTypes.string,
+    description: PropTypes.string,
+    info: PropTypes.shape({
+      title: PropTypes.string,
+      originTitle: PropTypes.string,
+      year: PropTypes.number,
+      country: PropTypes.string,
+      tagline: PropTypes.string,
+      genre: PropTypes.string,
+      cicle: PropTypes.string,
+    })
+  })
 }
 
 export default FilmDescription;

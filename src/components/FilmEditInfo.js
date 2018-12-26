@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { Row, Col, FormControl } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { Row, Col, FormControl } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 class FilmEditInfo extends Component {
     render() {
@@ -14,6 +15,12 @@ class FilmEditInfo extends Component {
             </Row>
         );
     }
+}
+
+FilmEditInfo.propTypes = {
+  name: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  onChange: PropTypes.func,
 }
 
 export default FilmEditInfo

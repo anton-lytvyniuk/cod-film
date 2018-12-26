@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Panel, Button, ButtonGroup, FormControl } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 import FilmEditInfo from '../components/FilmEditInfo'
 
@@ -64,6 +65,25 @@ class FilmEdit extends Component {
             </Panel>
         );
     }
+}
+
+FilmEdit.propTypes = {
+  dictionary: PropTypes.objectOf(PropTypes.string),
+  closeAction: PropTypes.func,
+  editAction: PropTypes.func,
+  film: PropTypes.shape({
+    img: PropTypes.string,
+    description: PropTypes.string,
+    info: PropTypes.shape({
+      title: PropTypes.string,
+      originTitle: PropTypes.string,
+      year: PropTypes.number,
+      country: PropTypes.string,
+      tagline: PropTypes.string,
+      genre: PropTypes.string,
+      cicle: PropTypes.string,
+    })
+  })
 }
 
 export default FilmEdit;
