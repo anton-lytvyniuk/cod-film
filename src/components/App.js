@@ -1,53 +1,27 @@
-import React, { Component } from 'react'
-import { Grid } from 'react-bootstrap'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { Grid } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import FilmsList from '../components/FilmsList'
-import FilmEdit from './FilmEdit'
-
-import { dictionary } from '../data'
+import Edit from './../pages/Edit';
+import List from './../pages/List';
+import Dashboard from './../pages/Dashboard';
 
 class App extends Component {
   render() {
-    const { filmEditId, films, editActionCreator, editAction, closeAction } = this.props;
+    const { films } = this.props;
     return (
       <Grid style={{ paddingLeft: '10%', paddingRight: '10%', paddingTop: '15px' }}>
-        {filmEditId 
-          ? <FilmEdit 
-            dictionary={dictionary} 
-            film={films[filmEditId]} 
-            closeAction={closeAction}
-            editAction={editAction}
-          />
-          : <FilmsList 
-            dictionary={dictionary} 
-            films={films} 
-            editActionCreator={editActionCreator}
-          />
-        }
+        <Router>
+          <Switch>
+            <Route exact path='/' component={List} />
+            <Route path='/list' component={List} />
+            <Route path='/edit/:id' component={Edit} />
+            <Route path='/dashboard' component={Dashboard} />
+          </Switch>
+        </Router>
       </Grid>
     );
   }
-}
-
-App.propTypes = {
-  editActionCreator: PropTypes.func,
-  editAction: PropTypes.func,
-  closeAction: PropTypes.func,
-  filmEditId: PropTypes.string,
-  films: PropTypes.objectOf(PropTypes.shape({
-    img: PropTypes.string,
-    description: PropTypes.string,
-    info: PropTypes.shape({
-      title: PropTypes.string,
-      originTitle: PropTypes.string,
-      year: PropTypes.number,
-      country: PropTypes.string,
-      tagline: PropTypes.string,
-      genre: PropTypes.string,
-      cicle: PropTypes.string,
-    })
-  })),
-}
+};
 
 export default App;

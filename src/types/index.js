@@ -1,0 +1,5 @@
+export const SELECT_FILM = 'SELECT_FILM';
+export const CHANGE_INFO = 'CHANGE_INFO';
+export const CHANGE_DESCRIPTION = 'CHANGE_DESCRIPTION';
+
+export const SAVE_FILM = 'SAVE_FILM';

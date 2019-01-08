@@ -1,17 +1,13 @@
-import React, { Component } from 'react'
-import { Row, Col } from 'react-bootstrap'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { Row, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+
+import { dictionary } from '../constants';
 
 class FilmDescription extends Component {
     render() {
-        const { 
-            film: { 
-                info, 
-                description, 
-                img,
-            },
-            dictionary,
-        } = this.props;
+      console.log(this.props)
+        const { info, description, img } = this.props.film;
 
         const infoRows = Object.keys(info).map(key => (
             <Row key={key} style={{paddingTop: '5px'}}>
@@ -35,7 +31,7 @@ class FilmDescription extends Component {
             </div>
         );
     }
-}
+};
 
 FilmDescription.propTypes = {
   dictionary: PropTypes.objectOf(PropTypes.string),
@@ -52,6 +48,6 @@ FilmDescription.propTypes = {
       cicle: PropTypes.string,
     })
   })
-}
+};
 
 export default FilmDescription;
