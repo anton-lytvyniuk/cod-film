@@ -1,8 +1,8 @@
 import * as types from './../types';
 
-export const selectFilm = (id, film) => ({
+export const selectFilm = film => ({
   type: types.SELECT_FILM,
-  payload: { id, film },
+  payload: film,
 });
 
 export const changeInfo = (key, value) => ({

@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
-import { selectFilm } from './../actions';
+import { Link } from 'react-router-dom';
+import { Panel } from 'react-bootstrap';
 
 class List extends Component {
-  selectFilm = key => e => {
-    const { films, selectFilm, history } = this.props;
-
-    e.preventDefault();
-    selectFilm(key, films[key]);
-    history.push(`/edit/${key}`);
-  }
-
   render() {
     console.log(this.props)
     const { films } = this.props;
     return (
-        <ul>
-          { Object.keys(films).map(key => (
-            <li key={key}>
-              <a onClick={this.selectFilm(key)}>{films[key].info.title}</a>
-            </li>
-          ))}
-        </ul>
+        <Panel>
+          <Panel.Heading>
+            <Panel.Title componentClass='h2' className='text-primary'>
+              Welcome!!! Select a film
+            </Panel.Title>
+          </Panel.Heading>
+          <Panel.Body>
+            <ul>
+              { Object.keys(films).map(key => (
+                <li key={key}>
+                  <Link to={`/edit/${key}`}>{`${films[key].info.title}/${films[key].info.originTitle} (${films[key].info.year})`}</Link>
+                </li>
+              ))}
+            </ul>
+          </Panel.Body>
+        </Panel>
     );
   }
 }
@@ -48,8 +49,4 @@ const mapStateToProps = state => ({
   films: state.films,
 });
 
-const mapActionToProps = dispatch => ({
-  selectFilm: (id, film) => dispatch(selectFilm(id, film)),
-});
-
-export default connect(mapStateToProps, mapActionToProps)(List);
+export default connect(mapStateToProps, )(List);

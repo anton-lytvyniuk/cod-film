@@ -5,7 +5,7 @@ export const dictionary = {
     country: 'Страна',
     tagline: 'Слоган',
     genre: 'Жанр',
-    cicle: 'Цикл',
+    cycle: 'Цикл',
     description: 'Описание',
     edit: 'Редактировать',
     cancel: 'Отменить',

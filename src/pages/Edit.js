@@ -26,13 +26,14 @@ class Edit extends Component {
   }
 
   componentDidMount() {
-    const { match: { params }, id, selectFilm, films } = this.props;
-    if (params.id !== id) selectFilm(params.id, films[params.id]);
+    const { match: { params: { id } }, selectFilm, films } = this.props;
+    selectFilm(films[id]);
   }
 
   render() {
-    console.log(this.props);
-    const { info, description, img } = this.props.films[this.props.match.params.id];
+    const { info, description, img } = this.props.film;
+
+    if (!info) return null;
 
     const infoRows = Object.keys(info || {}).map(key =>
         <FilmEditInfo
@@ -97,13 +98,12 @@ Edit.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  film: state.activeFilm.film,
-  id: state.activeFilm.id,
+  film: state.activeFilm,
   films: state.films,
 });
 
 const mapActionToProps = dispatch => ({
-  selectFilm: (id, film) => dispatch(selectFilm(id, film)),
+  selectFilm: film => dispatch(selectFilm(film)),
   changeInfo: (key, value) => dispatch(changeInfo(key, value)),
   changeDescription: value => dispatch(changeDescription(value)),
   saveFilm: (id, film) => dispatch(saveFilm(id, film)),

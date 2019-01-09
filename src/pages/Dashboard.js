@@ -3,17 +3,13 @@ import { ButtonGroup, Panel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import FilmDecription from '../components/FilmDescription';
+import FilmDescription from '../components/FilmDescription';
 import { dictionary } from '../constants';
-import { selectFilm } from './../actions';
 
 class Dashboard extends Component {
   selectFilm = key => e => {
-    const {films, selectFilm, history} = this.props;
-
     e.preventDefault();
-    selectFilm(key, films[key]);
-    history.push(`/edit/${key}`);
+    this.props.history.push(`/edit/${key}`);
   }
 
   render() {
@@ -26,7 +22,7 @@ class Dashboard extends Component {
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body>
-          <FilmDecription
+          <FilmDescription
             film={films[key]}
           />
           <ButtonGroup style={{float: 'right', paddingTop: '15px'}}>
@@ -62,8 +58,4 @@ const mapStateToProps = state => ({
   films: state.films,
 });
 
-const mapActionToProps = dispatch => ({
-  selectFilm: (id, film) => dispatch(selectFilm(id, film)),
-});
-
-export default connect(mapStateToProps, mapActionToProps)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);
